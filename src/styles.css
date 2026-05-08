@@ -1,0 +1,125 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-display: "Urbanist", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Epilogue", ui-sans-serif, system-ui, sans-serif;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-brand-navy: var(--brand-navy);
+  --color-brand-deep: var(--brand-deep);
+  --color-blue: var(--brand-blue);
+  --color-mist: var(--brand-mist);
+  --color-gold: var(--brand-gold);
+}
+
+:root {
+  --radius: 0.5rem;
+
+  /* Navy Trust palette → oklch */
+  --brand-navy: oklch(0.20 0.07 264);   /* #0f1b3d */
+  --brand-deep: oklch(0.31 0.07 256);   /* #1e3a5f */
+  --brand-blue: oklch(0.52 0.10 250);   /* #3b6fa0 */
+  --brand-mist: oklch(0.94 0.012 245);  /* #e8edf3 */
+  --brand-gold: oklch(0.78 0.12 80);    /* subtle accent */
+
+  --background: oklch(1 0 0);
+  --foreground: var(--brand-navy);
+
+  --card: oklch(1 0 0);
+  --card-foreground: var(--brand-navy);
+
+  --popover: oklch(1 0 0);
+  --popover-foreground: var(--brand-navy);
+
+  --primary: var(--brand-navy);
+  --primary-foreground: var(--brand-mist);
+
+  --secondary: var(--brand-mist);
+  --secondary-foreground: var(--brand-navy);
+
+  --muted: oklch(0.97 0.005 245);
+  --muted-foreground: oklch(0.45 0.03 250);
+
+  --accent: var(--brand-deep);
+  --accent-foreground: var(--brand-mist);
+
+  --destructive: oklch(0.58 0.22 27);
+  --destructive-foreground: oklch(0.99 0 0);
+
+  --border: oklch(0.90 0.012 245);
+  --input: oklch(0.92 0.012 245);
+  --ring: var(--brand-blue);
+
+  --gradient-hero: radial-gradient(ellipse at top, color-mix(in oklab, var(--brand-blue) 18%, transparent), transparent 60%), linear-gradient(180deg, var(--brand-navy), var(--brand-deep));
+  --gradient-mist: linear-gradient(180deg, var(--brand-mist), oklch(1 0 0));
+  --shadow-elegant: 0 20px 50px -25px color-mix(in oklab, var(--brand-navy) 35%, transparent);
+  --shadow-card: 0 1px 2px color-mix(in oklab, var(--brand-navy) 6%, transparent), 0 8px 24px -12px color-mix(in oklab, var(--brand-navy) 12%, transparent);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer utilities {
+  .bg-hero { background: var(--gradient-hero); }
+  .bg-mist { background: var(--gradient-mist); }
+  .shadow-elegant { box-shadow: var(--shadow-elegant); }
+  .shadow-card { box-shadow: var(--shadow-card); }
+
+  .scan-grid {
+    background-image:
+      linear-gradient(to right, color-mix(in oklab, var(--brand-mist) 12%, transparent) 1px, transparent 1px),
+      linear-gradient(to bottom, color-mix(in oklab, var(--brand-mist) 12%, transparent) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+}
